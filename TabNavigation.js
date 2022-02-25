@@ -9,7 +9,7 @@ import HomeScreen from './HomeScreen';
 
 const Stack = createStackNavigator();
 
-const TabNavigation = () => {
+export default function TabNavigation (){
     return (
         <NavigationContainer>
         <Stack.Navigator initialRouteName='Home'>
@@ -20,5 +20,3 @@ const TabNavigation = () => {
       </NavigationContainer>
       );
   };
-  
-  export default TabNavigation;

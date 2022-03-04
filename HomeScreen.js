@@ -2,23 +2,19 @@ import * as React from 'react';
 import { View, StyleSheet,Image,Button,Text, FlatList, TouchableOpacity } from 'react-native';
 import LoaiSanPham from './LoaiSanPham';
 import { useNavigation } from '@react-navigation/native';
-import HomeSP from './HomeSP';
-
-import Detail from './Detail';
-
-
 
 const HomeScreen = () => {
   const navigation = useNavigation();
     return(
         <FlatList
           data={LoaiSanPham}
-          renderItem={({ item }) =><TouchableOpacity 
-          onPress={() => navigation.navigate('Products', {categoryId: item.id})}> 
-            <View style={{backgroundColor: item.color}}>
-              <Text>{item.name}</Text>
+          renderItem={({ item }) =>
+          <TouchableOpacity style={styles.background}
+            onPress={() => navigation.navigate('Products', {categoryId: item.id})}> 
+            <View style={{backgroundColor: item.Image}}>
+              <Text style={styles.text} >{item.name}</Text>
             </View>
-            </TouchableOpacity>
+          </TouchableOpacity>
           }
           keyExtractor={item => item.id}  
         />
@@ -26,6 +22,21 @@ const HomeScreen = () => {
   };
   
 const styles = StyleSheet.create({
+  background: {
+      marginTop: 10,
+      marginLeft: 20,
+      marginRight:20,
+      marginBottom: 10,
+      height: 180,
+      borderRadius: 5,
+      borderColor:'#000000',
+      borderWidth: 1,
 
+  },
+  text:{
+    fontSize: 20,
+    alignSelf: 'center',
+    marginTop: 149,
+  },
 });
   export default HomeScreen;

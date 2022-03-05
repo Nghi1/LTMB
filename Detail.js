@@ -1,28 +1,45 @@
 import * as React from 'react';
-import { View, StyleSheet,Image,Button,Text } from 'react-native';
-import HomeSP from './HomeSP';
+import { FlatList, } from 'react-native-gesture-handler';
+import SANPHAM from './chitietsanpham';
+import { Avatar, Card,Button, Title, Paragraph, DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { Linking } from 'react-native';
 import { Entypo } from '@expo/vector-icons'; 
-import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
-import SANPHAMS from './chitietsanpham';
-
-
+const LeftContent = props => <Avatar.Icon {...props} icon="filmstrip" />
+const theme = {
+  ...DefaultTheme,
+  roundness: 2,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#58ACFA',
+    accent: '#f1c40f',
+  },
+};
 const Detail = (props) => {
-  const{productId}=props.route.params;
-  const product=SANPHAMS.filter(item=>item.id===productId)
+const{productId}=props.route.params;
+  const product=SANPHAM.filter(item=>item.id===productId)
     return(
+      
       <FlatList
           data={product}
           renderItem={({ item }) =>
-          <View>
-            <Entypo style={{alignSelf:"center"}} name="star" size={24} color="black" />
-<Image style={{width: 300, height: 300}} source={{uri: item.image}}/>
-<Text>{item.mota}</Text>
-<Text>{item.name}</Text>
-          </View>
+          
+          <PaperProvider theme={theme}><Entypo style={{alignSelf:"center"}} name="star" size={24} color="black" />
+            <Card style={{margin:10}} >
+              <Card.Title title={item.name} subtitle={item.nam} left={LeftContent} />
+              <Card.Cover style={{width:355, height:200}} source={{ uri: item.image}} />
+              <Card.Content>
+                <Title>{item.nametag}</Title>
+                <Paragraph style={{marginTop:20}}>{item.cotTruyen}</Paragraph>
+              </Card.Content>
+              <Card.Actions>
+                <Button mode="contained" onPress={() => Linking.openURL(item.trailer)}>Trailer</Button>
+                <Button mode="contained" onPress={() => console.log('Pressed')} style={{marginLeft:10}}>Xem phim</Button>
+              </Card.Actions>
+            </Card>
+          </PaperProvider>
           }
           keyExtractor={item => item.id}
-          />  
-      )
-  };
+      />  
+    )};
   
   export default Detail;

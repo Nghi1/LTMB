@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StyleSheet,Image,Button,Text, FlatList, TouchableOpacity } from 'react-native';
+import { View, StyleSheet,ImageBackground,Button,Text, FlatList, TouchableOpacity } from 'react-native';
 import LoaiSanPham from './LoaiSanPham';
 import { useNavigation } from '@react-navigation/native';
 
@@ -11,8 +11,8 @@ const HomeScreen = () => {
           renderItem={({ item }) =>
           <TouchableOpacity style={styles.background}
             onPress={() => navigation.navigate('Products', {categoryId: item.id})}> 
-            <View style={{backgroundColor: item.Image}}>
-              <Text style={styles.text} >{item.name}</Text>
+            <View><ImageBackground source={item.image} resizeMode="cover" >
+              <Text style={styles.text} >{item.name}</Text></ImageBackground>
             </View>
           </TouchableOpacity>
           }
@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
       borderRadius: 5,
       borderColor:'#000000',
       borderWidth: 1,
-
-  },
+},
   text:{
     fontSize: 20,
     alignSelf: 'center',
     marginTop: 149,
+    color:'black'
   },
 });
   export default HomeScreen;

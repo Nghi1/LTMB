@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, StyleSheet,Image,Button,Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
-import SANPHAMS from './chitietsanpham';
+import SANPHAMS from './sanpham';
 
 const Products = (props) => {
   const navigation = useNavigation();
@@ -94,7 +94,3 @@ const Products = (props) => {
   });
   
   export default Products;
-  /* <Text style={styles.text1}>Đạo Diễn: {item.daoDien}</Text>
-  <Text style={styles.text1}>Quốc Gia: {item.quocGia}</Text>
-  <Text style={styles.text1}>Ngôn Ngữ: {item.ngonNgu}</Text>
-  <Text style={styles.text1}>Thể loại: {item.theLoai}</Text>*/
